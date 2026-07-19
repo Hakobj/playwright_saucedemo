@@ -9,6 +9,11 @@ def test_locator_style(page):
     page.locator("#user-name").fill("standard_user")
     page.locator("#user-name").clear()
 
+
      # 3. BETTER — test-id attribute (exists specifically so tests can hook in)
     page.locator("[data-test='username']").fill("standard_user")
     page.locator("[data-test='username']").clear()
+
+    # 4. BEST when it fits — role/label based, reads like a human
+    page.get_by_placeholder("Username").fill("standard_user")
+    page.get_by_placeholder("Username").clear()
