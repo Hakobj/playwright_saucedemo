@@ -1,4 +1,5 @@
 # pages/login_page.py
+
 class LoginPage:
     # The URL path this page lives at. Kept here so the test never hardcodes it.
     PATH = ""   # saucedemo login is the root "/"
@@ -23,3 +24,10 @@ class LoginPage:
     # A small query helper — lets the TEST ask a question without knowing the selector.
     def error_text(self):
         return self.error_msg.inner_text()
+
+    def login_as(self, user):          # user is a User dataclass
+        self.username.fill(user.username)
+        self.password.fill(user.password)
+        self.login_btn.click()
+
+
