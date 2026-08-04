@@ -1,4 +1,7 @@
 # tests/test_login_raw.py  (this is the BEFORE — we won't keep it)
+import pytest
+
+@pytest.mark.no_auth
 def test_valid_login_raw_witout_pom(page):
     page.goto("https://www.saucedemo.com/")
     page.locator("[data-test='username']").fill("standard_user")

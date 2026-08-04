@@ -12,8 +12,13 @@
 
 
 # tests/test_login.py  (upgraded — no more manual LoginPage(page))
+
+# Leeping old code for reference, but we won't keep it in the final version.
+
+import pytest
 from data.test_data import STANDARD_USER
 
+@pytest.mark.no_auth
 def test_valid_login(login_page, inventory_page, base_url, env_config):     # <- fixtures injected by name
     login_page.goto(base_url)
     login_page.login_as(env_config["user"])
