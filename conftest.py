@@ -36,3 +36,11 @@ def env_config(request):
 @pytest.fixture(scope="session")
 def base_url(env_config):
     return env_config["base_url"]
+
+@pytest.fixture
+def api(playwright):
+    context = playwright.request.new_context(
+        base_url = "https://jsonplaceholder.typicode.com/"
+    )
+    yield context
+    context.dispose()
