@@ -1,25 +1,3 @@
-# name: Playwright Tests
-# on: [push, pull_request]
-
-# jobs:
-#   test:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
-
-#       - uses: actions/setup-python@v5
-#         with:
-#           python-version: "3.12"
-
-#       - name: Install dependencies
-#         run: |
-#           pip install pytest-playwright pytest-xdist
-#           playwright install --with-deps chromium
-
-#       - name: Run test suite
-#         run: pytest -n auto --env staging
-
-
 name: Build and Test Swaglabs
 
 on:
@@ -39,7 +17,8 @@ jobs:
         run: docker build -t playwright-tests .
 
       - name: Run tests in container
-        run: docker run --rm -v ${{ github.workspace }}/reports:/app/reports playwright-tests
+        # run: docker run --rm -v ${{ github.workspace }}/reports:/app/reports playwright-tests
+        run: docker compose up --build --exit-code-from playwright-tests
 
       - name: Upload test report
         if: always()
