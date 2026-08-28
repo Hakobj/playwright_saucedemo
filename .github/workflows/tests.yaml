@@ -19,6 +19,7 @@ jobs:
       - name: Run tests in container
         # run: docker run --rm -v ${{ github.workspace }}/reports:/app/reports playwright-tests
         run: docker compose up --build --exit-code-from playwright-tests
+        working-directory: docker-compose-demo
 
       - name: Upload test report
         if: always()
