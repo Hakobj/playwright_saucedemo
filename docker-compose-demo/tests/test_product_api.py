@@ -119,7 +119,6 @@ class TestProductAddAndFetch:
         response = requests.get(f"{BASE_URL}/api/products")
         data = response.json()
         count = len(data)
-        print("dddddddddddd", data)
 
         # Add new item
         payload = {"name": "Test new product", "price": 55.99, "in_stock": False}
@@ -131,7 +130,6 @@ class TestProductAddAndFetch:
         response_updated = requests.get(f"{BASE_URL}/api/products")
         assert response_updated.status_code == 200
         data_updated = response_updated.json()
-        print("uuuuuuuuuuu", data_updated)
 
         # Firslty test that count is added by 1
         count_updated = len(data_updated)
