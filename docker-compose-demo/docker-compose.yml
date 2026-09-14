@@ -32,6 +32,14 @@ services:
       timeout: 5s
       retries: 10
 
+  adminer:
+    image: adminer:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy   # Wait for PostgreSQL to be completely ready before starting Adminer
+
   # ── Container 2: The Mock API Server ─────────────────────
   api:
     build: ./app                     # Build from app/Dockerfile
