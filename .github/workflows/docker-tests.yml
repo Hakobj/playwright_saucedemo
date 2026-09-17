@@ -1,0 +1,24 @@
+name: Build and Test Swaglabs via docker compose
+
+on:
+  push:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run tests via docker compose 
+        run: docker compose up --build --abort-on-container-exit
+        working-directory: sql-testing-demo
+        
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: sql-testing-demo/reports/
